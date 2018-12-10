@@ -5,6 +5,9 @@ let pl, k, plats
 function preload() {
     this.load.image('bg', './assets/city.sprite.png')
     this.load.image('fg', './assets/lambo.png')
+    this.load.image('bj', './assets/cat.png')
+    this.load.image('bd', './assets/egg.png')
+    this.load.image('bf', './assets/greenfloat.png')
 
 }
 
@@ -13,9 +16,16 @@ function create() {
             
     pl = this.physics.add.sprite(100, 90, 'fg')
     pl.setCollideWorldBounds(true)
-    pl.setScale(10)
-    pl.setDragX(900)
-    pl.setBounce(1)
+    pl.setScale(1)
+    pl.setDragX(1500)
+    pl.setBounce(.1)
+
+    plats = this.physics.add.staticGroup()
+    plats.create(150,300,'bf')
+    plats.create(250,400,'bf')
+
+    this.physics.add.collider(pl,plats) 
+
 
     k = this.input.keyboard.addKeys(keys)
 
@@ -55,4 +65,4 @@ let config = {
       },
 }
 
-new Phaser.Game( config )
+new Phaser.Game(config)
